@@ -13,11 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $tenantId = 1;
+
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password'),
+            'tenant_id' => $tenantId, // Set tenant_id
+        ]);
+
+        $this->call([
+            TenantsAndProductsSeeder::class,
         ]);
     }
 }

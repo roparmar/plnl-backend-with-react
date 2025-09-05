@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
-{   
+{
     /**
      * Register any application services.
      */
@@ -25,10 +25,16 @@ class AppServiceProvider extends ServiceProvider
         Passport::tokensCan([
             'users.read'    => 'Read users',
             'users.write'   => 'Create/Update users',
-            'orders.read'   => 'Read orders',
-            'orders.write'  => 'Create/Update orders',
+            'products.read'  => 'Read products',
+            'products.write' => 'Create/update/delete products',
+            'view-products' => 'View products',
+            'add-products' => 'Add new products',
+            'admin'          => 'Admin privileges',
+            'orders.read'    => 'Read orders',
+            'tenant:*'       => 'Access specific tenant scope',
+            'tenant:{tenant_id}' => 'Tenant specific scope',
         ]);
 
-        Passport::setDefaultScope(['orders.read']);
+        // Passport::setDefaultScope(['orders.read']);
     }
 }
