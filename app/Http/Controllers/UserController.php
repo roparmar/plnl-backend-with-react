@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -24,14 +25,20 @@ class UserController extends Controller
                 $users = User::where('id', $user->id)->get();
             }
         }
-        
+
         // Normal user
         else {
             $users = User::where('id', $user->id)->get();
         }
 
-        return response()->json([
-            'users' => $users
+        // TODO: For API
+        // return response()->json([
+        //     'users' => $users
+        // ]);
+        
+        // Pass the user data directly to the view using Inertia
+        return Inertia::render('dashboard', [
+            'users' => $users,
         ]);
     }
 }
